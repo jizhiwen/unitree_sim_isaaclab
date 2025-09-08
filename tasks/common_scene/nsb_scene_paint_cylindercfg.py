@@ -8,6 +8,7 @@ import isaaclab.sim as sim_utils
 from isaaclab.assets import  AssetBaseCfg, RigidObjectCfg
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdFileCfg
+from isaaclab.sim.schemas.schemas_cfg import RigidBodyPropertiesCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 
@@ -27,7 +28,7 @@ class TableCylinderSceneCfg(InteractiveSceneCfg): # inherit from the interactive
             rot=[1.0, 0.0, 0.0, 0.0]
         ),
         spawn=UsdFileCfg(
-            usd_path=f"/home/app/nsb/asset/Simple_Warehouse/nsb_warehouse.usd",  # use simple room model
+            usd_path=f"{ISAAC_NUCLEUS_DIR}/Environments/Simple_Warehouse/warehouse.usd",  # use simple room model
         ),
     )
     # print(f"ISAAC_NUCLEUS_DIR: {ISAAC_NUCLEUS_DIR}")
@@ -39,94 +40,46 @@ class TableCylinderSceneCfg(InteractiveSceneCfg): # inherit from the interactive
                                                 rot=[1.0, 0.0, 0.0, 0.0]), # initial rotation [x, y, z, w]
         spawn=UsdFileCfg(
             # usd_path=f"{ISAAC_NUCLEUS_DIR}/Props/PackingTable/packing_table.usd",    # table model file
-            usd_path=f"/home/app/nsb/asset/PackingTable/PackingTable.usd",    # table model file
+            usd_path=f"/mnt/data/home/zw/asset/PackingTable/PackingTable.usd",    # table model file
             rigid_props=sim_utils.RigidBodyPropertiesCfg(kinematic_enabled=True),    # set to kinematic object
         ),
     )
 
-    #Glue stick
-    # stick = RigidObjectCfg(
-    #     prim_path="/World/envs/env_.*/Stick",    # table in the scene
-    #     init_state=AssetBaseCfg.InitialStateCfg(pos=[0.15, 0.35, 0.8],   # initial position [x, y, z]
-    #                                             rot=[1.0, 0.0, 0.0, 0.0]), # initial rotation [x, y, z, w]
-    #     spawn=UsdFileCfg(
-    #         usd_path=f"/home/app/nsb/asset/jiaobang-saomiao/jiaobang-saomiao.usd",    # table model file
-    #         rigid_props=sim_utils.RigidBodyPropertiesCfg(
-    #         ),    # rigid body properties configuration (rigid_props)
-    #         mass_props=sim_utils.MassPropertiesCfg(mass=0.1),    # mass properties configuration (mass)
-    #         collision_props=sim_utils.CollisionPropertiesCfg(),    # collision properties configuration (collision_props)
-    #         visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.15, 0.15, 0.15), metallic=1.0),    # visual material configuration (visual_material)
-    #     ),
-    # )
-
-    # stick = RigidObjectCfg(
-    #         prim_path="/World/envs/env_.*/Stick",    # table in the scene
-    #         init_state=AssetBaseCfg.InitialStateCfg(pos=[0.15, 0.35, 0.8],   # initial position [x, y, z]
-    #                                             rot=[1.0, 0.0, 0.0, 0.0]), # initial rotation [x, y, z, w]
-    #         spawn=UsdFileCfg(
-    #             usd_path=f"/home/app/nsb/asset/jiaobang-saomiao/jiaobang-saomiao.usd",
-    #             scale=(1.0, 1.0, 1.0),
-    #             rigid_props=sim_utils.RigidBodyPropertiesCfg(
-    #                         solver_position_iteration_count=16,
-    #                         solver_velocity_iteration_count=1,
-    #                         max_angular_velocity=1000.0,
-    #                         max_linear_velocity=1000.0,
-    #                         max_depenetration_velocity=5.0,
-    #                         disable_gravity=False,
-    #                     )
-    #             ,
-    #         ),
-    #     )
-
-    #cylinder
-    #2. object configuration (cylinder)     
-    # object = RigidObjectCfg(
-    #     prim_path="/World/envs/env_.*/Object",    # object in the scene
-    #     init_state=RigidObjectCfg.InitialStateCfg(pos=[0.6, 0.40, 0.24], # initial position (pos) 
-    #                                               rot=[1, 0, 0, 0]), # initial rotation (rot)
-    #     spawn=sim_utils.CylinderCfg(
-    #         radius=0.018,    # cylinder radius (radius)
-    #         height=0.25,     # cylinder height (height) 
- 
-    #         rigid_props=sim_utils.RigidBodyPropertiesCfg(
-    #         ),    # rigid body properties configuration (rigid_props)
-    #         mass_props=sim_utils.MassPropertiesCfg(mass=0.1),    # mass properties configuration (mass)
-    #         collision_props=sim_utils.CollisionPropertiesCfg(),    # collision properties configuration (collision_props)
-    #         visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.15, 0.15, 0.15), metallic=1.0),    # visual material configuration (visual_material)
-    #         physics_material=sim_utils.RigidBodyMaterialCfg(
-    #             friction_combine_mode="max",    # friction combine mode
-    #             restitution_combine_mode="min",    # restitution combine mode
-    #             static_friction=2,    # static friction coefficient
-    #             dynamic_friction=2,    # dynamic friction coefficient
-    #             restitution=0.0,    # restitution coefficient (no restitution)
-    #         ),
-    #     ),
-    # )
-
     object = RigidObjectCfg(
-        prim_path="/World/envs/env_.*/Object",    # object in the scene
-        init_state=RigidObjectCfg.InitialStateCfg(pos=[0.12, 0.30, 0.84], # initial position (pos) 
-                                                  rot=[1, 0, 0, 0]), # initial rotation (rot)
-        spawn=sim_utils.CylinderCfg(
-            radius=0.018,    # cylinder radius (radius)
-            height=0.25,     # cylinder height (height) 
- 
-            rigid_props=sim_utils.RigidBodyPropertiesCfg(
-            ),    # rigid body properties configuration (rigid_props)
-            mass_props=sim_utils.MassPropertiesCfg(mass=0.1),    # mass properties configuration (mass)
-            collision_props=sim_utils.CollisionPropertiesCfg(),    # collision properties configuration (collision_props)
-            visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.15, 0.15, 0.15), metallic=1.0),    # visual material configuration (visual_material)
-            physics_material=sim_utils.RigidBodyMaterialCfg(
-                friction_combine_mode="max",    # friction combine mode
-                restitution_combine_mode="min",    # restitution combine mode
-                static_friction=2,    # static friction coefficient
-                dynamic_friction=2,    # dynamic friction coefficient
-                restitution=0.0,    # restitution coefficient (no restitution)
+        prim_path="{ENV_REGEX_NS}/Object",
+        init_state=RigidObjectCfg.InitialStateCfg(pos=[0.15, 0.35, 0.8], rot=[0.70711, -0.70711, 0.0, 0.0]),
+        spawn=UsdFileCfg(
+            usd_path=f"/mnt/data/home/zw/asset/jiaobang-saomiao/jiaobang-saomiao_instanceable.usd",
+            scale=(1.0, 1.0, 1.0),
+            rigid_props=RigidBodyPropertiesCfg(
+                solver_position_iteration_count=16,
+                solver_velocity_iteration_count=1,
+                max_angular_velocity=1000.0,
+                max_linear_velocity=1000.0,
+                max_depenetration_velocity=5.0,
+                disable_gravity=False,
             ),
+            semantic_tags=[("class", "stick")],
         ),
     )
 
-
+    stick_base = RigidObjectCfg(
+        prim_path="{ENV_REGEX_NS}/StickBase",
+        init_state=RigidObjectCfg.InitialStateCfg(pos=[0.15, 0.35, 0.8], rot=[0.70711, 0.70711, 0.0, 0.0]),
+        spawn=UsdFileCfg(
+            usd_path=f"/mnt/data/home/zw/asset/stick-base/nsb_stickbase.usd",
+            scale=(0.01, 0.01, 0.01),
+            rigid_props=RigidBodyPropertiesCfg(
+                solver_position_iteration_count=16,
+                solver_velocity_iteration_count=1,
+                max_angular_velocity=1000.0,
+                max_linear_velocity=1000.0,
+                max_depenetration_velocity=5.0,
+                disable_gravity=False,
+            ),
+            semantic_tags=[("class", "stick_base")],
+        ),
+    )
 
     # Ground plane
     # 3. ground configuration
