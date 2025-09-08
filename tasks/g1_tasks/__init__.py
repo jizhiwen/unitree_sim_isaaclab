@@ -22,6 +22,10 @@ from . import move_cylinder_g1_29dof_dex1_wholebody
 from . import move_cylinder_g1_29dof_dex3_wholebody
 from . import move_cylinder_g1_29dof_inspire_wholebody
 
+from . import paint_cylinder_g1_29dof_dex1
+from . import paint_cylinder_g1_29dof_dex3
+from . import paint_cylinder_g1_29dof_inspire
+
 # export all modules
 __all__ = [
         "pick_place_cylinder_g1_29dof_dex3", "pick_place_cylinder_g1_29dof_dex1", 
@@ -33,5 +37,8 @@ __all__ = [
         "pick_place_cylinder_g1_29dof_inspire",
         "move_cylinder_g1_29dof_dex1_wholebody",
         "move_cylinder_g1_29dof_dex3_wholebody",
-        "move_cylinder_g1_29dof_inspire_wholebody"
+        "move_cylinder_g1_29dof_inspire_wholebody",
+        "paint_cylinder_g1_29dof_dex1",
+        "paint_cylinder_g1_29dof_dex3",
+        "paint_cylinder_g1_29dof_inspire",
 ]
